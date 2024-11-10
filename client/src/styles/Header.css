@@ -1,0 +1,160 @@
+.flex-justify-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+    margin-top: 0;
+}
+
+.chopo-image {
+    width: auto;
+    height: 80px;
+}
+
+@media (max-width: 768px) {
+    .chopo-image {
+        width: auto;
+        height: 50px;
+    }
+}
+
+.chopping-title {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    margin: 0;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .chopping-title {
+        font-size: 20px;
+    }
+}
+
+.flex-container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px 0 0 10px;
+}
+
+.search-icon {
+    width: auto;
+    height: 25px;
+    cursor: pointer;
+}
+
+.container-icon {
+    background-color: #E6AF2E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 0 10px 10px 0;
+}
+
+@media (max-width: 768px) {
+    .search-input {
+        padding: 7px;
+        width: auto;
+    }
+
+    .search-icon {
+        height: 19px;
+    }
+
+    .container-icon {
+        padding: 5px;
+    }
+}
+
+.container-nav {
+    background-color: #37284a;
+    padding: 5px 50px;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 5px;
+    
+}
+
+.header-nav .nav-link {
+    margin-right: 15px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.header-nav .nav-link:hover {
+    border-radius: 10px;
+    background-color: #54406db0;
+}
+
+@media (max-width: 768px) {
+    .header-nav {
+        justify-content: center;
+    }
+
+    .header-nav .nav-link {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+}
+
+.custom-dropdown {
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 150px;
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    color: #000;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        top: 25px;
+    }
+
+    .dropdown-item {
+        padding: 5px;
+    }
+}
