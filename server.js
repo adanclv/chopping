@@ -27,7 +27,7 @@ db.connect(error => {
     }
 });
 
-// Registro
+// Registro cliente
 app.post('/api/register', (req, res) => {
     const { nombre_usuario, nombre, paterno, materno, email, contrasena, domicilio, telefono } = req.body;
 
@@ -55,10 +55,11 @@ app.post('/api/register', (req, res) => {
     }
 });
 
+// Inicio de sesión cliente
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
-    const query = 'SELECT NoCliente, UsrCliente, PassCliente FROM Cliente WHERE UsrCliente = ?';
+    const query = 'SELECT NoCliente, UsrCliente, NombCliente ,PassCliente FROM Cliente WHERE UsrCliente = ?';
 
     db.query(query, [username], (err, result) => {
         if (err) {
@@ -78,9 +79,87 @@ app.post('/api/login', (req, res) => {
 
         const token = jwt.sign({ username: user.UsrCliente }, SECRET_KEY, { expiresIn: '1h' });
 
-        return res.status(200).json({ message: 'Inicio de sesión exitoso', token, id: user.NoCliente , username: user.UsrCliente });
+        return res.status(200).json({ message: 'Inicio de sesión exitoso', token, id: user.NoCliente , username: user.UsrCliente, nombre:user.NombCliente });
     });
 });
+
+// Obtener cliente
+app.get('/api/getCliente', (req, res) => {
+    const { id } = req.query;
+
+    const query = 'SELECT * FROM Cliente WHERE NoCliente = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.log('Error al buscar cliente: ', err);
+            return res.status(500).json({ message: 'Error al buscar cliente' });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({ message: 'Cliente no encontrado' });
+        }
+
+        const cliente = result[0];
+
+        return res.status(200).json({ message: 'Cliente encontrado', cliente });
+    });
+});
+
+// Actualizar cliente
+app.put('/api/updateCliente', (req, res) => {
+    const { id, nombre, paterno, materno, correo, telefono, domicilio } = req.body;
+
+    const query = `
+        UPDATE Cliente SET
+        NombCliente = COALESCE(?, NombCliente),
+        ApePatCliente = COALESCE(?, ApePatCliente),
+        ApeMatCliente = COALESCE(?, ApeMatCliente),
+        MailCliente = COALESCE(?, MailCliente),
+        TelCliente = COALESCE(?, TelCliente),
+        DomCliente = COALESCE(?, DomCliente)
+        WHERE NoCliente = ?`;
+
+    db.query(query, [nombre, paterno, materno, correo, telefono, domicilio, id], (err, result) => {
+        if (err) {
+            console.error('Error al actualizar cliente:', err);
+            return res.status(500).json({ message: 'Error al actualizar cliente' });
+        }
+        res.status(200).json({ message: 'Cliente actualizado correctamente' });
+    });
+});
+
+// Cambiar contraseña
+app.put('/api/changePassword', (req, res) => {
+    const { id, password, newPassword } = req.body;
+
+    const query = 'SELECT PassCliente FROM Cliente WHERE NoCliente = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al buscar contraseña:', err);
+            return res.status(500).json({ message: 'Error al buscar contraseña' });
+        }
+
+        const user = result[0];
+
+        if (!bcrypt.compareSync(password, user.PassCliente)) {
+            return res.status(401).json({ message: 'La contraseña actual no es correcta. Por favor, inténtalo nuevamente.' });
+        }
+
+        const hashedPassword = bcrypt.hashSync(newPassword, 10);
+
+        const updateQuery = 'UPDATE Cliente SET PassCliente = ? WHERE NoCliente = ?';
+
+        db.query(updateQuery, [hashedPassword, id], (error, result) => {
+            if (error) {
+                console.error('Error al cambiar contraseña:', error);
+                return res.status(500).json({ message: 'Error al cambiar contraseña' });
+            }
+            res.status(200).json({ message: 'Contraseña cambiada correctamente' });
+        });
+    });
+});
+
 
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];
@@ -102,8 +181,6 @@ const verifyToken = (req, res, next) => {
 app.get('/', (req, res) => {
     res.send('Server is ready');
 });
-
-
 
 
 app.listen(PORT, () => {

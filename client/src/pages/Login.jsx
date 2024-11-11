@@ -39,6 +39,7 @@ function Login() {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('username', data.username);
                 localStorage.setItem('id', data.id);
+                localStorage.setItem('name', data.nombre);
                 navigate('/');
                 console.log('Inicio de sesión exitoso:', data);
             } else {

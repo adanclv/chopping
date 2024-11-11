@@ -3,12 +3,10 @@ import perfil from '../assets/perfil.png';
 import miscompras from '../assets/miscompras.png';
 import membresia from '../assets/membresia.png';
 import React from 'react';
-import { useLocation, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function CardsCuenta() {
-    const location = useLocation();
-
-    const id = new URLSearchParams(location.search).get('id');
+    const { id } = useParams();
 
     return (
         <div className='cuenta-cards'>
@@ -41,7 +39,7 @@ function CardCuenta({ icon, title, description, id, path }) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/cuenta/${path}?id=${id}`);
+        navigate(`/cuenta/${id}/${path}`);
     };
 
     return (

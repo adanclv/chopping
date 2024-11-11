@@ -5,7 +5,7 @@ import buscarImage from '../assets/buscar.png';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
-export default function Header({ username, id, onLogout }) {
+export default function Header({ username, id, name, onLogout }) {
     const [selectedOption, setSelectedOption] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
@@ -37,7 +37,7 @@ export default function Header({ username, id, onLogout }) {
                     <div className='container-icon'>
                         <img src={buscarImage} alt="Buscar" className="search-icon" />
                     </div>
-                    <ProfilePhoto user={username} id={id} logout={onLogout}/>
+                    <ProfilePhoto user={username} id={id} name={name} logout={onLogout}/>
                 </div>
 
 

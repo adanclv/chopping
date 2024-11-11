@@ -2,7 +2,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Cuenta from './Cuenta';
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import promo from '../assets/promo.jpeg';
 import '../styles/Home.css';
 import tech from '../assets/tech.png';
@@ -11,16 +11,19 @@ export default function Home() {
     const [token, setToken] = useState('');
     const [username, setUsername] = useState('');
     const [id, setId] = useState('');
+    const [name, setName] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
         const storedUsername = localStorage.getItem('username');
         const storedId = localStorage.getItem('id');
+        const storedName = localStorage.getItem('name');
 
         if (storedToken) setToken(storedToken);
         if (storedUsername) setUsername(storedUsername);
         if (storedId) setId(storedId);
+        if (storedName) setName(storedName);
 
         // console.log(token, username);
     }, []);
@@ -31,17 +34,18 @@ export default function Home() {
             setToken('');
             setUsername('');
             setId('');
+            setName('');
             navigate('/');
         }, 800);
     };
 
     return (
         <>
-            <Header username={username} id={id} onLogout={handleLogout} />
+            <Header username={username} id={id} name={name} onLogout={handleLogout} />
             <Routes>
                 <Route path='/' element={
                     <>
-                        <div class="image-wrapper">
+                        <div className="image-wrapper">
                             <img src={promo} alt="promo" />
                             <div className='gradient'></div>
                         </div>
@@ -73,7 +77,7 @@ export default function Home() {
                         </section>
                     </>
                 } />
-                <Route path='cuenta/*' element={<Cuenta />}/>
+                <Route path="/cuenta/:id/*" element={<Cuenta />} />
             </Routes>
             {/* <Footer /> */}
         </>

@@ -1,8 +1,16 @@
+@font-face {
+  font-family: 'MiFuente';
+  src: url('./assets/fonts/Questrial-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: 'MiFuente', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* min-height: 100vh; */
@@ -36,8 +44,14 @@ footer {
 }
 
 input {
+  font-family: 'MiFuente', sans-serif;
   border: 1px solid #ccc;
   border-radius: 10px;
+}
+
+button {
+  font-family: 'MiFuente', sans-serif;
+  font-size: 0.9em;
 }
 
 *, *:after, *:before {

@@ -89,16 +89,6 @@ export default function Admin() {
                 {renderContent()}
 
             </div>
-            {/* <div class="main-content">
-                <Routes>
-                    <Route path="/" element={<>
-                        <h1>Bienvenido al Panel de Administración</h1>
-                        <p>Este es el contenido principal de la página.</p>
-                    </>} />
-                    <Route path="proveedores" element={<Proveedores />} />
-                    <Route path="usuarios" element={<Usuarios />} />
-                </Routes>
-            </div> */}
         </>
     );
 }
