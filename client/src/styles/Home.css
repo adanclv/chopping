@@ -324,25 +324,89 @@
     list-style: none;
     display: flex;
     padding: 0;
-  }
-  
-  .breadcrumb-item {
+}
+
+.breadcrumb-item {
     margin-right: 10px;
-  }
-  
-  .breadcrumb-item a {
+}
+
+.breadcrumb-item a {
     text-decoration: none;
     color: #007bff;
-  }
-  
-  .breadcrumb-item a:hover {
+}
+
+.breadcrumb-item a:hover {
     text-decoration: underline;
-  }
-  
-  .breadcrumb-item::after {
+}
+
+.breadcrumb-item::after {
     content: '>';
     margin-left: 10px;
-  }
-  .breadcrumb-item:last-child::after {
+}
+
+.breadcrumb-item:last-child::after {
     content: '';
-  }  
+}
+
+.membresia-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.membresia-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.membresia-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.membresia-badge {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.membresia-badge-activa {
+  background-color: #10B981;
+  color: white;
+}
+
+.membresia-badge-vencida {
+  background-color: #EF4444;
+  color: white;
+}
+
+.membresia-content {
+  padding: 1.5rem;
+}
+
+.membresia-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.membresia-info-item {
+  margin-bottom: 1rem;
+}
+
+.membresia-info-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.membresia-info-value {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}

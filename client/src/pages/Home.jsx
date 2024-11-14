@@ -41,6 +41,7 @@ export default function Home() {
 
     return (
         <>
+            
             <Header username={username} id={id} name={name} onLogout={handleLogout} />
             <Routes>
                 <Route path='/' element={
@@ -78,8 +79,13 @@ export default function Home() {
                     </>
                 } />
                 <Route path="/cuenta/:id/*" element={<Cuenta />} />
+
             </Routes>
             {/* <Footer /> */}
+
         </>
+
+
+
     );
 }
