@@ -432,7 +432,13 @@
 }
 
 .breadcrumb-item {
+}
+
+.breadcrumb-item {
     margin-right: 10px;
+}
+
+.breadcrumb-item a {
 }
 
 .breadcrumb-item a {
@@ -441,12 +447,21 @@
 }
 
 .breadcrumb-item a:hover {
+}
+
+.breadcrumb-item a:hover {
     text-decoration: underline;
+}
+
+.breadcrumb-item::after {
 }
 
 .breadcrumb-item::after {
     content: '>';
     margin-left: 10px;
+}
+
+.breadcrumb-item:last-child::after {
 }
 
 .breadcrumb-item:last-child::after {

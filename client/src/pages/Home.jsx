@@ -42,6 +42,7 @@ export default function Home() {
 
     return (
         <>
+            
             <Header username={username} id={id} name={name} onLogout={handleLogout} />
             <Routes>
                 <Route path='/' element={
@@ -65,6 +66,10 @@ export default function Home() {
 
             </Routes>
             {/* <Footer /> */}
+
         </>
+
+
+
     );
 }

@@ -1,5 +1,6 @@
 import CardsCuenta from '../components/CardsCuenta';
 import ManageCuenta from './ManageCuenta';
+import Membership from './Membership';
 import Breadcrumb from '../components/BreadCrumb';
 import React from 'react';
 import { Routes, Route, useParams } from 'react-router-dom';
