@@ -44,14 +44,13 @@ app.post('/api/register', (req, res) => {
         db.query(query, [id, nombre_usuario, nombre, paterno, materno, telefono, email, domicilio, hashedPassword], (error, result) => {
             if (error) {
                 console.log('Error al registrar usuario: ', error);
-                return res.status(500).json({ message: 'Error al registrar usuario' });
+                return res.status(500).json({ message: 'Hubo un error al registrar el usuario. Por favor, inténtalo de nuevo.' });
             }
-            console.log('Usuario registrado con éxito');
-            return res.status(201).json({ message: 'Usuario registrado con éxito' });
+            return res.status(201).json({ message: 'Tu cuenta ha sido creada exitosamente.' });
         });
     } catch (error) {
         console.error('Error al registrar usuario:', error);
-        return res.status(500).json({ message: 'Error al registrar usuario' });
+        return res.status(500).json({ message: 'Hubo un error al registrar el usuario. Por favor, inténtalo de nuevo.' });
     }
 });
 
@@ -68,13 +67,13 @@ app.post('/api/login', (req, res) => {
         }
 
         if (result.length === 0) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
+            return res.status(404).json({ message: 'Username o constraseña incorrecta' });
         }
 
         const user = result[0];
 
         if (!bcrypt.compareSync(password, user.PassCliente)) {
-            return res.status(401).json({ message: 'Contraseña incorrecta' });
+            return res.status(401).json({ message: 'Username o constraseña incorrecta' });
         }
 
         const token = jwt.sign({ username: user.UsrCliente }, SECRET_KEY, { expiresIn: '1h' });
@@ -160,6 +159,21 @@ app.put('/api/changePassword', (req, res) => {
     });
 });
 
+// Eliminar cliente
+
+
+// Categorias
+app.get('/api/categorias', (req, res) => {
+    const query = 'SELECT * FROM Categoria';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error al buscar categorias:', err);
+            return res.status(500).json({ message: 'Error al buscar categorias' });
+        }
+        res.status(200).json(result);
+    });
+});
 
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import UpdateCliente from '../components/UpdateCliente';
+import NotFound from './NotFound';
+import Breadcrumb from '../components/BreadCrumb';
 
 export default function ManageCuenta() {
   const [cliente, setCliente] = useState(null);
@@ -40,12 +42,14 @@ export default function ManageCuenta() {
 
   return (
     <>
+      
       {loading && <p>Cargando...</p>}
 
       {error && <p>{error}</p>}
 
       {cliente &&
         <>
+        <Breadcrumb name={["Cuenta", "Mi Cuenta"]} paths={[`/cuenta/${id}`, `/cuenta/${id}/administrar-cuenta`]} />
           <Routes>
             <Route path="/" element={<SettingItems cliente={cliente} id={id} />} />
             <Route path="cambiar-nombre" element={<UpdateCliente cliente={cliente} propiedad="nombre" />} />
@@ -53,6 +57,7 @@ export default function ManageCuenta() {
             <Route path="cambiar-telefono" element={<UpdateCliente cliente={cliente} propiedad="telefono" />} />
             <Route path="cambiar-pass" element={<UpdateCliente cliente={cliente} propiedad="password" />} />
             <Route path="cambiar-domicilio" element={<UpdateCliente cliente={cliente} propiedad="domicilio" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </>
       }
@@ -88,11 +93,11 @@ function SettingItems({ cliente, id }) {
     <div className="seguridad">
       {success && <div className='success-change'>
         <p>✅ {propUpdated()}</p>
-        </div>}
+      </div>}
 
       {failed && <div className='failed-change'>
         <p>Error al actualizar</p>
-        </div>}
+      </div>}
       <h1>Inicio de sesión y seguridad</h1>
       <div className='seguridad-settings'>
         <SettingItem
