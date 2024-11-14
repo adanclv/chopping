@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function TablaProveedor() {
     return (
-        <div className="container-table">
+        <div className="container-table-admin">
             <div className="tabla header-tabla">
                 <p>Id</p>
                 <p>Nombre</p>

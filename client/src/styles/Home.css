@@ -1,3 +1,20 @@
+.container {
+    margin-inline: 15%;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        margin-inline: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-inline: 5%;
+    }
+}
+
 .image-wrapper {
     position: relative;
     width: 100%;
@@ -21,22 +38,32 @@
 .categorias {
     position: relative;
     top: -80px;
-    margin: 0 15%;
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
+    cursor: pointer;
+}
+
+.highlighted-text {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.categoria:hover .highlighted-text {
+    color: #5F37D1;
 }
 
 .categoria {
     background-color: #FFF;
     height: 200px;
-    width: 150px;
+    width: auto;
     border-radius: 10px;
-    padding: 20px 10px;
+    padding: 15px 10px;
 
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -46,33 +73,111 @@
     width: auto;
 }
 
+.categoria p {
+    margin: 0;
+    padding: 0;
+}
+
 @media (max-width: 1200px) {
     .categorias {
-        margin: 0 50px;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        top: -50px;
+    }
+
+    .categoria {
+        height: 100px;
+        width: auto;
+    }
+
+    .categoria img {
+        height: 40px;
     }
 }
 
 @media (max-width: 768px) {
     .categorias {
-        margin: 0 20px;
+        /* grid-template-columns: repeat(3, 1fr); */
+        justify-items: center;
+        top: -20px;
     }
 
     .categoria {
-        height: 150px;
-        width: 100px;
+        height: 90px;
+        width: 90px;
     }
 
     .categoria img {
-        height: 60px;
+        height: 30px;
     }
 }
 
-.container {
-    /* margin: 0 15%; */
-    margin-inline: 15%;
-    margin-bottom: 20px;
+.productos-home {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);    
+}
+
+.productos-home h2 {
+    margin: 0;
+    padding: 0;
+    text-align: start;
+}
+
+.grid-productos-home {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.grid-productos-home img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.content-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    cursor: pointer;
+}
+
+.content-grid .name-producto {
+    margin-block: 1px;
+    text-align: start;
+    font-size: 1.1em;
+}
+
+.content-grid:hover .name-producto {
+    color: #5F37D1;
+}
+
+.content-grid .price-producto {
+    margin-block: 0;
+    /* margin-left: 15%; */
+    text-align: start;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+
+.info-gral {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+    /* text-align: left; */
+    justify-content: center;
+    /* align-items:center; */
+}
+
+.info-gral .algo p {
+    text-align: left;
+    font-size: 16px;
 }
 
 .container h1 {
@@ -324,25 +429,207 @@
     list-style: none;
     display: flex;
     padding: 0;
-  }
-  
-  .breadcrumb-item {
+}
+
+.breadcrumb-item {
+}
+
+.breadcrumb-item {
     margin-right: 10px;
-  }
-  
-  .breadcrumb-item a {
+}
+
+.breadcrumb-item a {
+}
+
+.breadcrumb-item a {
     text-decoration: none;
     color: #007bff;
-  }
-  
-  .breadcrumb-item a:hover {
+}
+
+.breadcrumb-item a:hover {
+}
+
+.breadcrumb-item a:hover {
     text-decoration: underline;
-  }
-  
-  .breadcrumb-item::after {
+}
+
+.breadcrumb-item::after {
+}
+
+.breadcrumb-item::after {
     content: '>';
     margin-left: 10px;
-  }
-  .breadcrumb-item:last-child::after {
+}
+
+.breadcrumb-item:last-child::after {
+}
+
+.breadcrumb-item:last-child::after {
     content: '';
-  }  
+}
+
+
+/* Tablas de mis compras */
+.container-table {
+    background-color: #fff;
+    padding: 5px 8px;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.table-compras {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.hTabla {
+    /* margin-top: 20px; */
+    font-weight: bold;
+    border-bottom: none;
+}
+
+.table-compras:last-of-type {
+    border-bottom: none;
+}
+
+.table-compras button {
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    width: 50px;
+}
+
+@media (max-width: 1200px) {
+    .container-table {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-table {
+        width: 100%;
+    }
+}
+
+.shadow-popUp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popUp {
+    background-color: #fff;
+    padding: 15px 10px;
+    border-radius: 8px;
+    width: 600px;
+    text-align: center;
+}
+
+.popUp h2 {
+    margin: 0;
+}
+
+.popUp h3 {
+    margin: 8px 60px 0 0;
+    text-align: right;
+}
+
+.popUp .table-compras {
+    grid-template-columns: 0.8fr 2fr 1fr 1fr;
+    text-align: left;
+}
+
+.popUp .table-compras p {
+    margin-left: 10px;
+}
+
+.popUp .title-compra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-inline: 10px;
+}
+
+.popUp .title-compra button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 3px;
+}
+
+/* Membership */
+.membresia-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.membresia-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.membresia-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.membresia-badge {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.membresia-badge-activa {
+    background-color: #10B981;
+    color: white;
+}
+
+.membresia-badge-vencida {
+    background-color: #EF4444;
+    color: white;
+}
+
+.membresia-content {
+    padding: 1.5rem;
+}
+
+.membresia-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.membresia-info-item {
+    margin-bottom: 1rem;
+}
+
+.membresia-info-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.membresia-info-value {
+    font-size: 1rem;
+    margin-top: 0.25rem;
+}

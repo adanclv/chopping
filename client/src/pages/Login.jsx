@@ -6,6 +6,7 @@ import '../styles/Sign.css';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
     // const handleSubmit = async (e) => {
@@ -21,7 +22,7 @@ function Login() {
     //         alert('Error al iniciar sesión');
     //     }
     // };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -34,28 +35,34 @@ function Login() {
                 body: JSON.stringify({ username, password })
             });
 
+            const data = await response.json();
             if (response.ok) {
-                const data = await response.json();
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('username', data.username);
                 localStorage.setItem('id', data.id);
-                localStorage.setItem('name', data.nombre);
+                localStorage.setItem('nombre', data.nombre);
                 navigate('/');
                 console.log('Inicio de sesión exitoso:', data);
             } else {
-                const errorData = await response.json();
-                alert(`Error al iniciar sesión: ${errorData.message}`);
-            }  
+                setMessage(data.message);
+            }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            alert('Error de red al iniciar sesión');
+            setMessage('Error de red al iniciar sesión');
+        } finally {
+            setTimeout(() => {
+                setMessage('');
+            }, 1500);
         }
     };
 
+    const handleBack = () => {
+        navigate('/');
+    };
 
     return (
         <div className='container-sign'>
-            <header>
+            <header onClick={handleBack}>
                 <h1>Chopping</h1>
             </header>
             <div className="form-container">
@@ -76,6 +83,12 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
+
+                    {message && (
+                        <div className='alerta'>
+                            <p>{message}</p>
+                        </div>
+                    )}
                     <button type="submit" className="submit-btn">Iniciar Sesión</button>
                 </form>
                 <p className="terms-text">
