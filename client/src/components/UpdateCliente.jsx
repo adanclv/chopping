@@ -50,10 +50,10 @@ function SettingNombre({ cliente }) {
             });
 
             if (response.ok) {
-                const data = await response.json();
+                // const data = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?success=success_change_name`);
             } else {
-                const errorData = await response.json();
+                // const errorData = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?failed=true`);
             }
         } catch (error) {
@@ -118,10 +118,10 @@ function SettingCorreo({ cliente }) {
             });
 
             if (response.ok) {
-                const data = await response.json();
+                // const data = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?success=success_change_email`);
             } else {
-                const errorData = await response.json();
+                // const errorData = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?failed=true`);
             }
         } catch (error) {
@@ -169,12 +169,12 @@ function SettingTelefono({ cliente }) {
             });
 
             if (response.ok) {
-                const data = await response.json();
+                // const data = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?success=success_change_phone`);
             } else {
-                const errorData = await response.json();
+                // const errorData = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?failed=true`);
-                console.log(errorData);
+                // console.log(errorData);
             }
         } catch (error) {
             console.error('Error al enviar datos de actualización:', error);
@@ -231,7 +231,7 @@ function SettingPassword({ cliente }) {
             });
 
             if (response.ok) {
-                const data = await response.json();
+                // const data = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?success=success_change_password`);
             } else if (response.status === 401) {
                 const errorData = await response.json();
@@ -303,10 +303,10 @@ function SettingDomicilio({ cliente }) {
             });
 
             if (response.ok) {
-                const data = await response.json();
+                // const data = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?success=success_change_address`);
             } else {
-                const errorData = await response.json();
+                // const errorData = await response.json();
                 navigate(`/cuenta/${cliente.NoCliente}/administrar-cuenta?failed=true`);
             }
         } catch (error) {

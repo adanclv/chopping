@@ -1,5 +1,4 @@
 import micuenta from '../assets/micuenta.png';
-import perfil from '../assets/perfil.png';
 import miscompras from '../assets/miscompras.png';
 import membresia from '../assets/membresia.png';
 import React from 'react';

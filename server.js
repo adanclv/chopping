@@ -83,8 +83,8 @@ app.post('/api/login', (req, res) => {
 });
 
 // Obtener cliente
-app.get('/api/getCliente', (req, res) => {
-    const { id } = req.query;
+app.get('/api/getCliente/:id', (req, res) => {
+    const { id } = req.params;
 
     const query = 'SELECT * FROM Cliente WHERE NoCliente = ?';
 
@@ -162,9 +162,157 @@ app.put('/api/changePassword', (req, res) => {
 // Eliminar cliente
 
 
+// Proveedores
+app.get('/api/proveedores', (req, res) => {
+    const query = 'SELECT * FROM Proveedor';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error al buscar proveedores:', err);
+            return res.status(500).json({ message: 'Error al buscar proveedores' });
+        }
+        res.status(200).json(result);
+    });
+});
+
+app.post('/api/proveedores/create', (req, res) => {
+    const { nombre, telefono, email, domicilio, rfc } = req.body;
+
+    if (!nombre || !telefono || !email || !domicilio || !rfc) {
+        console.log('Todos los campos son obligatorios');
+        return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    }
+
+    const query = 'INSERT INTO Proveedor (NombProveedor, TelProveedor, MailProveedor, DomProveedor, RFCProveedor) VALUES (?, ?, ?, ?, ?)';
+
+    db.query(query, [nombre, telefono, email, domicilio, rfc], (err, result) => {
+        if (err) {
+            console.error('Error al crear proveedor:', err);
+            return res.status(500).json({ message: 'Error al crear proveedor' });
+        }
+        res.status(201).json({ message: 'Proveedor creado correctamente' });
+    });
+});
+
+app.get('/api/proveedores/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = 'SELECT * FROM Proveedor WHERE NoProveedor = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al buscar proveedor:', err);
+            return res.status(500).json({ message: 'Error al buscar proveedor' });
+        }
+        res.status(200).json(result[0]);
+    });
+});
+
+app.put('/api/proveedores/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { nombre, telefono, email, domicilio, rfc, estado } = req.body;
+
+    const query = 'UPDATE Proveedor SET NombProveedor = ?, TelProveedor = ?, MailProveedor = ?, DomProveedor = ?, RFCProveedor = ?, Estado = ? WHERE NoProveedor = ?';
+
+    db.query(query, [nombre, telefono, email, domicilio, rfc, estado, id], (err, result) => {
+        if (err) {
+            console.error('Error al actualizar proveedor:', err);
+            return res.status(500).json({ message: 'Error al actualizar proveedor' });
+        }
+        res.status(200).json({ message: 'Proveedor actualizado correctamente' });
+    });
+});
+
+app.delete('/api/proveedores/delete/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = 'DELETE FROM Proveedor WHERE NoProveedor = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al eliminar proveedor:', err);
+            return res.status(500).json({ message: 'Error al eliminar proveedor' });
+        }
+        res.status(200).json({ message: 'Proveedor eliminado correctamente' });
+    });
+});
+
 // Categorias
+app.get('/api/categoriasHome', (req, res) => {
+    const query = 'SELECT NoCategoria, NombCategoria, ImgCategoria FROM Categoria';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error al buscar categorias:', err);
+            return res.status(500).json({ message: 'Error al buscar categorias' });
+        }
+        res.status(200).json(result);
+    });
+});
+
 app.get('/api/categorias', (req, res) => {
     const query = 'SELECT * FROM Categoria';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error al buscar categorias:', err);
+            return res.status(500).json({ message: 'Error al buscar categorias' });
+        }
+        res.status(200).json(result);
+    });
+});
+
+app.get('/api/categorias/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = 'SELECT * FROM Categoria WHERE NoCategoria = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al buscar categoria:', err);
+            return res.status(500).json({ message: 'Error al buscar categoria' });
+        }
+        res.status(200).json(result[0]);
+    });
+});
+
+app.post('/api/categorias/create', (req, res) => {
+    const { nombre, descripcion, imagen, estado } = req.body;
+
+    if (!nombre || !descripcion) {
+        console.log('Todos los campos son obligatorios');
+        return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    }
+
+    const query = 'INSERT INTO Categoria (NombCategoria, DescCategoria) VALUES (?, ?)';
+
+    db.query(query, [nombre, descripcion], (err, result) => {
+        if (err) {
+            console.error('Error al crear categoria:', err);
+            return res.status(500).json({ message: 'Error al crear categoria' });
+        }
+        res.status(201).json({ message: 'Categoria creada correctamente' });
+    });
+});
+
+app.put('/api/categorias/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { nombre, descripcion, imagen, estado } = req.body;
+
+    const query = 'UPDATE Categoria SET NombCategoria = ?, DescCategoria = ?, ImgCategoria = ?, Estado = ? WHERE NoCategoria = ?';
+
+    db.query(query, [nombre, descripcion, imagen, estado, id], (err, result) => {
+        if (err) {
+            console.error('Error al actualizar categoria:', err);
+            return res.status(500).json({ message: 'Error al actualizar categoria' });
+        }
+        res.status(200).json({ message: 'Categoria actualizada correctamente' });
+    });
+});
+
+app.get('/api/categoriasSB', (req, res) => {
+    const query = 'SELECT Categoria.NoCategoria, Categoria.NombCategoria, COUNT(Producto.CodigoProducto) as NumProductos FROM Categoria INNER JOIN Producto ON Categoria.NoCategoria = Producto.NoCategoria	GROUP BY Categoria.NoCategoria';
+
 
     db.query(query, (err, result) => {
         if (err) {
@@ -191,6 +339,61 @@ const verifyToken = (req, res, next) => {
         next();
     });    
 };
+
+// Productos
+app.get('/api/productos', (req, res) => {
+    const query = 'SELECT CodigoProducto, NombProducto, PrecioVenta, ImgProducto FROM Producto';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error al buscar productos:', err);
+            return res.status(500).json({ message: 'Error al buscar productos' });
+        }
+        res.status(200).json(result);
+    })
+});
+
+app.get('/api/productos/:categoria', (req, res) => {
+    const { categoria } = req.params;
+
+    const query = 'SELECT CodigoProducto, NombProducto, PrecioVenta, ImgProducto FROM Producto WHERE NoCategoria = ?';
+
+    db.query(query, [categoria], (err, result) => {
+        if (err) {
+            console.error('Error al buscar productos:', err);
+            return res.status(500).json({ message: 'Error al buscar productos' });
+        }
+        res.status(200).json(result);
+    });
+});
+
+app.get('/api/producto/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = 'SELECT * FROM Producto WHERE CodigoProducto = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al buscar producto:', err);
+            return res.status(500).json({ message: 'Error al buscar producto' });
+        }
+        res.status(200).json(result[0]);
+    });
+});
+
+app.get('/api/productosBusqueda/:busqueda', (req, res) => {
+    const { busqueda } = req.params;
+
+    const query = 'SELECT CodigoProducto, NombProducto, PrecioVenta, ImgProducto FROM Producto WHERE NombProducto LIKE ? LIMIT 6';
+
+    db.query(query, [`%${busqueda}%`], (err, result) => {
+        if (err) {
+            console.error('Error al buscar productos:', err);
+            return res.status(500).json({ message: 'Error al buscar productos' });
+        }
+        res.status(200).json(result);
+    });
+});
 
 app.get('/', (req, res) => {
     res.send('Server is ready');

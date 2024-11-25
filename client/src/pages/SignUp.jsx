@@ -14,8 +14,6 @@ export default function SignUp() {
         domicilio: '',
         telefono: ''
     });
-    // const [verificationCode, setVerificationCode] = useState('');
-    const [isRegistered, setIsRegistered] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
@@ -39,10 +37,6 @@ export default function SignUp() {
 
             const data = await response.json();
             if (response.ok) {
-                // const generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
-                // setVerificationCode(generatedCode);
-                setIsRegistered(true);
-                // alert(`Usuario registrado con éxito. Tu código de verificación es: ${generatedCode}`);
                 setMessage(data.message);
                 setTimeout(() => {
                     handleContinue();
@@ -55,7 +49,6 @@ export default function SignUp() {
         } catch (error) {
             console.error('Error al registrar usuario:', error);
             setMessage('Error de red al registrar usuario');
-            // alert('Error de red al registrar usuario');
         } finally {
             setMessage('');
         }
@@ -63,7 +56,6 @@ export default function SignUp() {
 
     const handleContinue = () => {
         navigate('/login');
-        // navigate('/verification', { state: { verificationCode } });
     };
 
     const handleBack = () => {
