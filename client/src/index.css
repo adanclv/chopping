@@ -43,10 +43,14 @@ footer {
   width: 100%;
 }
 
-input {
+input, textarea {
   font-family: 'MiFuente', sans-serif;
   border: 1px solid #ccc;
   border-radius: 10px;
+}
+
+select {
+  font-family: 'MiFuente', sans-serif;
 }
 
 button {

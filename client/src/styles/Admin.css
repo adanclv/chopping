@@ -9,10 +9,124 @@
     width: 350px;
 }
 
+.flex-right {
+    display: flex;
+    justify-content: right;
+    margin: 0 20px;
+}
+
+.flex-column-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 .flex-container-center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.form-admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    width: 80%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .form-admin {
+        width: 100%;
+    }
+}
+
+.form-admin input {
+    border-radius: 2px;
+    padding: 10px 5px;
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 12px;
+}
+
+.form-admin input:focus {
+    border-color: #462ac4;
+    box-shadow: 0 4px 6px rgb(0, 119, 136, 0.2);
+}
+
+.form-admin textarea {
+    border-radius: 2px;
+    padding: 10px 5px;
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 12px;
+    resize: none;
+    height: 70px;
+}
+
+.form-admin textarea:focus {
+    border-color: #462ac4;
+    box-shadow: 0 4px 6px rgb(0, 119, 136, 0.2);
+}
+
+.form-admin select {
+    border-radius: 2px;
+    padding: 10px 5px;
+    margin: 0 0 10px 0;
+    width: 100%;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    appearance: menulist;
+    cursor: pointer;
+}
+
+.form-admin select:focus {
+    border-color: #462ac4;
+    box-shadow: 0 4px 6px rgb(0, 119, 136, 0.2);
+}
+
+.search input {
+    padding: 10px;
+    width: 350px;
+}
+
+.search p {
+    margin-left: 10px;
+}
+
+.filter-estado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #ccc;
+    height: 25px;
+}
+
+.filter-estado p {
+    margin: 0;
+    padding: 0 8px;
+}
+
+.filter-estado select{
+    padding: 0 5px;
+    margin: 0;
+    background-color: transparent;
+    width: 100%;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    height: 100%; 
+    appearance: menulist;
+}
+
+.filter-estado select:hover {
+    background-color: #fff;
 }
 
 .sidebar {
@@ -45,10 +159,10 @@
     margin: 3px 0;
 }
 
-.sidebar button {
+.sidebar a {
     background-color: transparent;
     cursor: pointer;
-    /* color: #000; */
+    color: #000;
     display: flex;
     align-items: center;
     padding: 10px 0 10px 15px;
@@ -56,19 +170,20 @@
     width: 100%;
     text-align: left;
     font-size: 12px;
+    text-decoration: none;
 }
 
-.sidebar button svg {
+.sidebar a svg {
     margin-right: 10px;
 }
 
-.sidebar button:hover {
+.sidebar a:hover {
     background-color: #462ac42c;
     border-radius: 4px;
     color: #462ac4;
 }
 
-button.active {
+a.active {
     background-color: #462ac42c;
     border-radius: 4px;
     color: #462ac4;
@@ -109,6 +224,39 @@ button.active {
     width: calc(100% - 200px);
 }
 
+.btn {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.btn:last-of-type {
+    margin-right: 0;
+}
+
+.btn-blue {
+    background-color: #462ac4;
+    color: #FFFFFF;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.btn-gray {
+    background-color: #aaa8a8;
+    color: #000;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.btn-blue:hover {
+    background-color: #5F37D1;
+}
+
+.btn-gray:hover {
+    background-color: #c4c4c4;
+}
+
 .btn-create {
     text-decoration: none;
     padding: 8px 15px;
@@ -129,9 +277,15 @@ button.active {
     padding: 5px 25px;
 }
 
-.tabla{
+.tabla-6col{
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 2fr 1fr 1fr 0.5fr;
+    text-align: left;
+}
+
+.tabla-5col {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 0.5fr;
     text-align: left;
 }
 
@@ -147,19 +301,46 @@ button.active {
 .content-tabla {
     border-bottom: #d6d6d6 1px solid;
     align-items: center;
+    padding-block: 8px;
 }
 
 .content-tabla:last-of-type {
     border-bottom: none;
 }
 
+.estado {
+    width: fit-content;
+    padding: 3px 5px;
+    border-radius: 10px;
+}
+
+.activo {
+    background-color: green;
+}
+
+.activo::after {
+    content: "Activo";
+    color: white;
+}
+
+.inactivo {
+    background-color: red;
+}
+
+.inactivo::after {
+    content: "Inactivo";
+    color: white;
+}
+
 .btn-action {
-    display: flex;
-    justify-content: space-around;
+    width: auto;
+    /* display: flex;
+    justify-content: space-evenly;
+    align-items: center; */
 }
 
 .btn-action button {
-    padding: 3px 3px;
+    padding: 2px 3px;
     color: #000;
     border-radius: 5px;
     border: 1px solid #d6d6d6;
@@ -168,4 +349,67 @@ button.active {
 
 .btn-action button:hover {
     background-color: #f4f4f4;
+}
+
+.text-gray {
+    color: #aaa8a8;
+}
+
+.text-black {
+    color: #000;
+}
+
+.breadcrumbs ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.breadcrumbs li a {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.breadcrumbs .separator {
+    margin: 0 8px;
+    color: #aaa8a8;
+    font-size: 18px;
+}
+
+.m-20 {
+    margin: 20px;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.error {
+    color: #b71c1c;
+    border-radius: 5px;
+    border: 2px solid #d32f2f;
+    border-left: 10px solid #b71c1c;
+    background-color: #ffebee;
+    padding: 10px;
+}
+
+.success {
+    color: #1b5e20;
+    border-radius: 5px;
+    border: 2px solid #388e3c;
+    border-left: 10px solid #1b5e20;
+    background-color: #e8f5e9;
+    padding: 10px;
+}
+
+.fsize-12 {
+    font-size: 12px;
+}
+
+.img-input {
+    min-width: 400px;
+    background-color: #fff;
+    
 }

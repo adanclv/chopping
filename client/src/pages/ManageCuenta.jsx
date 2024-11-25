@@ -6,7 +6,6 @@ import Breadcrumb from '../components/BreadCrumb';
 
 export default function ManageCuenta() {
   const [cliente, setCliente] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
@@ -16,7 +15,7 @@ export default function ManageCuenta() {
 
     const fetchCliente = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/getCliente?id=${id}`, {
+        const response = await fetch(`http://localhost:5000/api/getCliente/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -42,10 +41,7 @@ export default function ManageCuenta() {
 
   return (
     <>
-      
       {loading && <p>Cargando...</p>}
-
-      {error && <p>{error}</p>}
 
       {cliente &&
         <>

@@ -9,20 +9,6 @@ function Login() {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     console.log('Logging in with', email, password);
-
-    //     // Aquí puedes agregar la lógica de autenticación
-    //     const isLoggedIn = true; // Actualiza esto con tu lógica de autenticación real
-
-    //     if (isLoggedIn) {
-    //         navigate('/');
-    //     } else {
-    //         alert('Error al iniciar sesión');
-    //     }
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -92,7 +78,7 @@ function Login() {
                     <button type="submit" className="submit-btn">Iniciar Sesión</button>
                 </form>
                 <p className="terms-text">
-                    Al continuar, aceptas las <a href="#">Condiciones de Uso</a> y el <a href="#">Aviso de Privacidad</a> de Chopping.
+                    Al continuar, aceptas las <a href="/">Condiciones de Uso</a> y el <a href="/">Aviso de Privacidad</a> de Chopping.
                 </p>
                 <p className="register-text">
                     ¿Eres nuevo? <Link to="/signup">Regístrate</Link>

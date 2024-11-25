@@ -46,17 +46,31 @@
 }
 
 .search-input {
-    width: 250px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px 0 0 10px;
+    width: 500px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
 }
 
-.search-icon {
+.search-input input {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.search-input input:focus {
+    outline: none;
+    border: 2px solid #E6AF2E;
+    box-shadow: 0 0 5px #E6AF2E;
+}
+
+/* .search-icon {
     width: auto;
     height: 25px;
     cursor: pointer;
-}
+} */
 
 .container-icon {
     background-color: #E6AF2E;
@@ -67,10 +81,21 @@
     border-radius: 0 10px 10px 0;
 }
 
+@media (max-width: 1024px) {
+    .search-input {
+        width: 380px;
+    }
+}
+
 @media (max-width: 768px) {
     .search-input {
-        padding: 7px;
-        width: auto;
+        /* padding: 7px; */
+        width: 300px;
+        height: 35px;
+    }
+
+    .search-input input {
+        font-size: 10px;
     }
 
     .search-icon {
@@ -97,7 +122,7 @@
 .nav-link {
     text-decoration: none;
     padding: 5px;
-    
+
 }
 
 .header-nav .nav-link {
@@ -156,5 +181,53 @@
 
     .dropdown-item {
         padding: 5px;
+    }
+}
+
+.productos-encontrados {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    width: 500px;
+    height: auto;
+    background-color: #fff;
+    transition: all 0.25s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.productos-encontrados ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.productos-encontrados ul li {
+    text-align: left;
+    padding: 10px;
+    /* border-bottom: 1px solid #f1f1f1; */
+    cursor: pointer;
+    color: #000;
+}
+
+.drop-down-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.drop-down-hide {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+@media (max-width: 1024px) {
+    .productos-encontrados {
+        width: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .productos-encontrados {
+        width: 300px;
     }
 }

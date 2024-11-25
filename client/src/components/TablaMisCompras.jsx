@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Tabla_MisCompras() {
+export default function TablaMisCompras() {
     const [popUp, setPopUp] = useState(false);
 
     const handlePopUp = () => {
@@ -15,8 +15,8 @@ export default function Tabla_MisCompras() {
                         <h2>Compra #777</h2>
                         <button onClick={handlePopUp}>
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
-                                <line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2" stroke-linecap="round" />
+                                <line x1="4" y1="4" x2="20" y2="20" stroke="black" strokeWidth="2" strokeLinecap="round" />
+                                <line x1="20" y1="4" x2="4" y2="20" stroke="black" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                         </button>
                     </div>
